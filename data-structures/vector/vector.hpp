@@ -4,6 +4,7 @@
 template <typename T>
 class Vector
 {
+public:
     T *data;
     size_t size;
     size_t capacity;
@@ -90,6 +91,11 @@ public:
         return *this;
     }
 
+    int *operator[](unsigned index)
+    {
+        return (data + index);
+    }
+
     ~Vector()
     {
         delete[] data;
@@ -106,5 +112,15 @@ public:
             resize();
 
         data[size++] = elem;
+    }
+
+    unsigned length()
+    {
+        return size;
+    }
+
+    void print_length()
+    {
+        std::cout << size << std::endl;
     }
 };
