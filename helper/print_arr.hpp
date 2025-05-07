@@ -8,7 +8,7 @@
  * @param size the size of the array
  */
 template <typename T>
-void print_arr(T *data, size_t size)
+void print_arr(const T *data, size_t size)
 {
     for (unsigned i = 0; i < size; ++i)
     {

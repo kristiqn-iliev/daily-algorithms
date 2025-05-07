@@ -95,10 +95,9 @@ public:
         delete[] data;
     }
 
-    void print()
+    void print() const
     {
         print_arr(data, size);
-        std::cout << size << " cap:" << capacity;
     }
 
     void push(const T &elem)
