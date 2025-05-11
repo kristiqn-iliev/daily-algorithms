@@ -136,4 +136,75 @@ public:
     {
         std::cout << size << std::endl;
     }
+
+    Vector<T> subvector(unsigned start, unsigned end)
+    {
+        Vector<T> subvec;
+        for (int i = start; i < end; ++i)
+        {
+            subvec.push(this->data[i]);
+        }
+
+        return subvec;
+    }
+
+    Vector<T> subvector(unsigned start)
+    {
+        Vector<T> subvec;
+        for (int i = start; i < this->length(); ++i)
+        {
+            subvec.push(this->data[i]);
+        }
+
+        return subvec;
+    }
+
+    T total()
+    {
+        T sum = 0;
+        for (int i = 0; i < this->length(); ++i)
+            sum += this->data[i];
+
+        return sum;
+    }
+
+    void pop_back()
+    {
+        Vector<T> temp(subvector(0, this->length() - 1));
+        *this = temp;
+    }
+
+    void pop_start()
+    {
+        Vector<T> temp(subvector(1, this->length()));
+        *this = temp;
+    }
+
+    // works on integers only
+    int max()
+    {
+        unsigned buff = 0;
+        buff -= 1; // UNSIGNED INT_MAX
+        buff /= 2; // INT_MAX
+        int max = buff;
+        max += 1; // INT_MIN
+
+        for (int i = 0; i < this->length(); ++i)
+            max < this->data[i] ? max = this->data[i] : max = max;
+
+        return max;
+    }
+
+    int min()
+    {
+        unsigned buff = 0;
+        buff -= 1; // UNSIGNED INT_MAX
+        buff /= 2; // INT_MAX
+        int min = buff;
+
+        for (int i = 0; i < this->length(); ++i)
+            min > this->data[i] ? min = this->data[i] : min = min;
+
+        return min;
+    }
 };
