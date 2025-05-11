@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "../../helper/print_arr.hpp"
 
@@ -50,6 +51,13 @@ public:
         data = new T[1];
     }
 
+    // Vector(unsigned size)
+    // {
+    //     this->size = size;
+    //     capacity = closest_non_lesser_power_of_two(size);
+    //     data = new T[capacity];
+    // }
+
     Vector(const Vector &other)
     {
         size = other.size;
@@ -91,7 +99,12 @@ public:
         return *this;
     }
 
-    int *operator[](unsigned index)
+    T &operator()(unsigned index)
+    {
+        return data[index];
+    }
+
+    T *operator[](unsigned index)
     {
         return (data + index);
     }
