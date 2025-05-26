@@ -14,34 +14,18 @@ public:
         using index = unsigned;
         using value = int;
         map<value, index> map;
-        for (index i = 0; i < nums.size(); ++i)
+
+        for (int i = 0; i < nums.size(); ++i)
         {
-            map.insert({nums[i], i});
-        }
-
-        sort(nums.begin(), nums.end());
-
-        auto start = nums.begin();
-        auto end = nums.end() - 1;
-
-        std::cout << map[*end] << endl;
-
-        while (start <= end)
-        {
-            std::cout << "values:" << "start:" << *start << "end:" << *end << endl;
-            std::cout << "indices:" << "start:" << map[*start] << "end:" << map[*end] << endl;
-
-            if (*start + *end > target)
-                --end;
-
-            else if (*start + *end < target)
-                ++start;
-
+            if (map.find(target - nums[i]) != map.end())
+            {
+                result.push_back(map.at(target - nums[i]));
+                result.push_back(i);
+                return result;
+            }
             else
             {
-                result.push_back(map[*start]);
-                result.push_back(map[*end]);
-                break;
+                map.insert({nums[i], i});
             }
         }
 
@@ -51,9 +35,9 @@ public:
 
 int main()
 {
-    vector<int> a({3, 3, 3});
+    vector<int> a({3, 11, 8, 15});
     Solution sol;
 
-    vector<int> result = sol.twoSum(a, 6);
+    vector<int> result = sol.twoSum(a, 18);
     cout << result[0] << " " << result[1];
 }
